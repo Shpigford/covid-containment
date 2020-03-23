@@ -1,0 +1,75 @@
+body {
+  background: #efefef;
+  font-family: "Roboto Mono", "Courier", fixed;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 1.3em;
+  padding: 50px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none; }
+
+.admin {
+  background: red;
+  color: white;
+  padding: 8px 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-size: 0.8em; }
+  .admin a {
+    color: white;
+    font-weight: bold; }
+
+a {
+  color: red; }
+
+.btn {
+  background: red;
+  border-radius: 5px;
+  border: 2px solid #990000;
+  color: white;
+  font-weight: bold;
+  padding: 5px 15px;
+  text-decoration: none;
+  box-shadow: 0 2px 0 #990000;
+  cursor: pointer; }
+  .btn.btn-blue {
+    background: blue;
+    border: 2px solid #000099;
+    box-shadow: 0 2px 0 #000099; }
+
+#infected {
+  background: red;
+  border-radius: 5px;
+  padding: 5px 8px;
+  font-weight: bold;
+  color: white; }
+
+#viral_knowledge {
+  background: blue;
+  border-radius: 5px;
+  padding: 5px 8px;
+  font-weight: bold;
+  color: white; }
+
+.start h1,
+.start .data,
+.start .message p,
+.start .treat {
+  display: none; }
+
+.start .name {
+  display: none; }
+  .start .name input {
+    font-family: "Roboto Mono", "Courier", fixed;
+    border: 0;
+    font-size: 14px;
+    outline: 0;
+    padding: 10px 15px;
+    border-bottom: 1px solid black;
+    background: #fafafa; }
+
+.main {
+  display: none; }

@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <title>COVID Containment</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,400i,700,700i"
+      rel="stylesheet"
+    />
+    <script type="text/javascript" src="jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script type="text/javascript" src="game-min.js"></script>
+  </head>
+  <body>
+    <div class="admin">Admin: <a href="" onclick="reset()">Reset</a></div>
+    <div class="start">
+      <h1>Welcome to COVID Containment!</h1>
+      <div class="message">
+        <p>
+          Your job is to erradicate the virus, COVID-19, before the entire world
+          succumbs to it. You have no knowledge of <em>how</em> to do that, but
+          a complete lack of ability never stopped anyone else, so it won't stop
+          you!
+        </p>
+      </div>
+      <div class="treat">
+        <p><a class="btn treat">Treat first patients</a></p>
+        <p><span class="first_treatments"></span></p>
+      </div>
+      <div class="name">
+        By the way, what's your name?
+        <input type="text" name="name" placeholder="My name is..." />
+      </div>
+    </div>
+
+    <div class="main">
+      <h1></h1>
+      <div class="data">
+        <p>
+          There are currently <span id="infected">0</span> infected humans. And
+          counting...
+        </p>
+      </div>
+    </div>
+
+    <!-- <h1>COVID Clicker</h1>
+    <p>Infected: <span id="infected">0</span></p>
+    <p>
+      <a href="#" class="btn" onclick="treatInfected()">Treat</a> (<b
+        id="knowledge_bonus"
+        >0</b
+      >
+      knowledge bonus)
+    </p>
+
+    <p>Viral Knowledge: <span id="viral_knowledge">0</span></p>
+    <p>
+      <a href="#" class="btn btn-blue" onclick="research()">Research</a>
+    </p> -->
+  </body>
+</html>
