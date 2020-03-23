@@ -36,7 +36,7 @@ $(document).ready(function() {
     if (keycode == "13") {
       name = $(this).val();
       $(".start").fadeOut("slow", function() {
-        start_main();
+        startMain();
         status = "start_main";
       });
     }
@@ -130,7 +130,10 @@ function reset() {
   var save = {
     status: "new",
     name: null,
-    infected: 1
+    infected: 1,
+    patientsTreated: 0,
+    researchLevel: 0,
+    researchLevelProgress: 0
   };
   localStorage.setItem("save", JSON.stringify(save));
   load();
