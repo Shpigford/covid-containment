@@ -2,6 +2,9 @@ var status = "new";
 var fade_delay = 500;
 var name;
 var infected = 1;
+var patientsTreated = 0;
+var researchLevel = 0;
+var researchLevelProgress = 0;
 
 $(document).ready(function() {
   load();
@@ -24,6 +27,8 @@ $(document).ready(function() {
             });
         });
     });
+  } else if (status == "start_main") {
+    startMain();
   }
 
   $('input[name="name"]').on("keypress", function(e) {
@@ -36,11 +41,56 @@ $(document).ready(function() {
       });
     }
   });
+
+  $(".treat_infected").on("click", function(e) {
+    e.preventDefault();
+
+    treatInfected();
+  });
+
+  $(".research_treatment").on("click", function(e) {
+    e.preventDefault();
+
+    researchTreatment();
+  });
 });
 
-function start_main() {
+function researchTreatment() {
+  researchLevelProgress = researchLevelProgress + 25 / (researchLevel * 1.5);
+
+  if (researchLevelProgress >= 100) {
+    researchLevel = researchLevel + 1;
+    researchLevelProgress = 0;
+
+    $(".research_level").text(researchLevel);
+  }
+
+  $(".research .progress-bar").css("width", researchLevelProgress + "%");
+}
+
+function treatInfected() {
+  infected = infected - 1;
+  patientsTreated = patientsTreated + 1;
+
+  $("#infected").text(infected);
+
+  if (patientsTreated >= 25) {
+    $(".patients_treated").text(patientsTreated);
+    $(".actions").fadeOut("slow", function() {
+      $(".out_of_hand")
+        .delay(fade_delay)
+        .fadeIn("slow");
+    });
+  }
+}
+
+function startMain() {
   $(".main h1").text("Hi there, " + name + "!");
-  $(".main").fadeIn("slow");
+  $(".main").fadeIn("slow", function() {
+    $(".actions")
+      .delay(300)
+      .fadeIn();
+  });
 }
 
 function increaseInfected() {
@@ -52,7 +102,10 @@ function save() {
   var save = {
     status: status,
     name: name,
-    infected: infected
+    infected: infected,
+    patientsTreated: patientsTreated,
+    researchLevel: researchLevel,
+    researchLevelProgress: researchLevelProgress
   };
   localStorage.setItem("save", JSON.stringify(save));
 }
@@ -63,6 +116,12 @@ function load() {
   if (typeof savegame.status !== "undefined") status = savegame.status;
   if (typeof savegame.name !== "undefined") name = savegame.name;
   if (typeof savegame.infected !== "undefined") infected = savegame.infected;
+  if (typeof savegame.patientsTreated !== "undefined")
+    patientsTreated = savegame.patientsTreated;
+  if (typeof savegame.researchLevel !== "undefined")
+    researchLevel = savegame.researchLevel;
+  if (typeof savegame.researchLevelProgress !== "undefined")
+    researchLevelProgress = savegame.researchLevelProgress;
 
   $("#infected").text(infected);
 }

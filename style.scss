@@ -88,4 +88,20 @@ a {
 
 .main {
   display: none;
+
+  .actions,
+  .out_of_hand {
+    display: none;
+  }
+}
+
+.progress {
+  background: #ffffff;
+  margin-bottom: 8px;
+  border-radius: 2px;
+  .progress-bar {
+    background: blue;
+    height: 20px;
+    border-radius: 2px;
+  }
 }
