@@ -4,7 +4,7 @@ var name;
 var infected = 1;
 var patientsTreated = 0;
 var researchLevel = 0;
-var researchLevelProgress = 0;
+var researchBonus = 0;
 
 $(document).ready(function() {
   load();
@@ -45,59 +45,57 @@ $(document).ready(function() {
   $(".treat_infected").on("click", function(e) {
     e.preventDefault();
 
-    $(this).prop("disabled", true);
-
-    $(this)
-      .find(".progress")
-      .animate(
-        {
-          width: "100%"
-        },
-        3000,
-        "swing",
-        function() {
-          $(this)
-            .parent()
-            .prop("disabled", false);
-          $(this).width("0%");
-          treatInfected();
-        }
-      );
+    progressButton($(this), 1000, treatInfected);
   });
 
   $(".research_treatment").on("click", function(e) {
     e.preventDefault();
 
-    researchTreatment();
+    progressButton($(this), 3500, researchTreatment);
   });
 });
 
+function progressButton(button, time, callback) {
+  button.prop("disabled", true);
+
+  button.find(".progress").animate(
+    {
+      width: "100%"
+    },
+    time,
+    "swing",
+    function() {
+      $(this)
+        .parent()
+        .prop("disabled", false);
+      $(this).width("0%");
+      callback();
+    }
+  );
+}
+
 function researchTreatment() {
-  researchLevelProgress = researchLevelProgress + 25 / (researchLevel * 1.5);
+  researchLevel = researchLevel + 1;
 
-  if (researchLevelProgress >= 100) {
-    researchLevel = researchLevel + 1;
-    researchLevelProgress = 0;
+  $(".research_level").text(researchLevel);
 
-    $(".research_level").text(researchLevel);
-  }
-
-  $(".research .progress-bar").css("width", researchLevelProgress + "%");
+  researchBonus = 1 + researchLevel / 10;
+  $(".research_bonus").text(researchBonus);
 }
 
 function treatInfected() {
-  infected = infected - 1;
-  patientsTreated = patientsTreated + 1;
+  if (researchBonus <= 0) {
+    researchBonus = 1;
+  }
+
+  infected = infected - Math.round(1 * researchBonus);
+  patientsTreated = patientsTreated + Math.round(1 * researchBonus);
 
   $("#infected").text(infected);
 
-  if (patientsTreated >= 25) {
+  if (patientsTreated >= 10) {
     $(".patients_treated").text(patientsTreated);
-    $(".actions").fadeOut("slow", function() {
-      $(".out_of_hand")
-        .delay(fade_delay)
-        .fadeIn("slow");
-    });
+    $(".out_of_hand").fadeIn("slow");
   }
 }
 
@@ -122,7 +120,7 @@ function save() {
     infected: infected,
     patientsTreated: patientsTreated,
     researchLevel: researchLevel,
-    researchLevelProgress: researchLevelProgress
+    researchBonus: researchBonus
   };
   localStorage.setItem("save", JSON.stringify(save));
 }
@@ -137,10 +135,12 @@ function load() {
     patientsTreated = savegame.patientsTreated;
   if (typeof savegame.researchLevel !== "undefined")
     researchLevel = savegame.researchLevel;
-  if (typeof savegame.researchLevelProgress !== "undefined")
-    researchLevelProgress = savegame.researchLevelProgress;
+  if (typeof savegame.researchBonus !== "undefined")
+    researchBonus = savegame.researchBonus;
 
   $("#infected").text(infected);
+  $(".research_level").text(researchLevel);
+  $(".research_bonus").text(researchBonus);
 }
 
 function reset() {

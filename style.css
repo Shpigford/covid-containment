@@ -41,6 +41,8 @@ a {
     background: blue;
     border: 2px solid #000099;
     box-shadow: 0 2px 0 #000099; }
+    .btn.btn-blue .progress {
+      background: #000099 !important; }
 
 .btn-progress {
   position: relative; }
