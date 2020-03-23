@@ -45,7 +45,24 @@ $(document).ready(function() {
   $(".treat_infected").on("click", function(e) {
     e.preventDefault();
 
-    treatInfected();
+    $(this).prop("disabled", true);
+
+    $(this)
+      .find(".progress")
+      .animate(
+        {
+          width: "100%"
+        },
+        3000,
+        "swing",
+        function() {
+          $(this)
+            .parent()
+            .prop("disabled", false);
+          $(this).width("0%");
+          treatInfected();
+        }
+      );
   });
 
   $(".research_treatment").on("click", function(e) {
