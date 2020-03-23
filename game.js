@@ -80,7 +80,9 @@ function researchTreatment() {
   $(".research_level").text(researchLevel);
 
   researchBonus = 1 + researchLevel / 10;
-  $(".research_bonus").text(researchBonus);
+
+  $(".research_bonus").fadeIn("slow");
+  $(".research_bonus_amount").text(researchBonus);
 }
 
 function treatInfected() {
@@ -93,7 +95,7 @@ function treatInfected() {
 
   $("#infected").text(infected);
 
-  if (patientsTreated >= 10) {
+  if (patientsTreated >= 8) {
     $(".patients_treated").text(patientsTreated);
     $(".out_of_hand").fadeIn("slow");
   }
@@ -109,7 +111,7 @@ function startMain() {
 }
 
 function increaseInfected() {
-  infected = Math.ceil(infected * 1.01);
+  infected = Math.ceil(infected * 1.025);
   $("#infected").text(infected);
 }
 
@@ -140,7 +142,10 @@ function load() {
 
   $("#infected").text(infected);
   $(".research_level").text(researchLevel);
-  $(".research_bonus").text(researchBonus);
+  if (researchBonus > 1) {
+    $(".research_bonus").show();
+  }
+  $(".research_bonus_amount").text(researchBonus);
 }
 
 function reset() {
