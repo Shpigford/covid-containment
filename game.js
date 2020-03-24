@@ -1,7 +1,7 @@
 var status = "new";
 var fade_delay = 500;
 var name;
-var infected = 10;
+var infected = 20;
 var uninfected = 7800000000;
 var patientsTreated = 0;
 var researchLevel = 0;
@@ -195,7 +195,7 @@ function reset() {
   var save = {
     status: "new",
     name: null,
-    infected: 10,
+    infected: 20,
     uninfected: 7800000000,
     patientsTreated: 0,
     researchLevel: 0,

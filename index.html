@@ -80,12 +80,12 @@
 
     <div class="primary">
       <h1>COVID Containment Dashboard</h1>
-      <ul class="current">
-        <li>Infected: <b class="infected"></b></li>
-        <li>Recovered: <b class="patients_treated"></b></li>
-        <li>Deaths: <b class="deaths">-</b></li>
-        <li>Uninfected: <b class="uninfected"></b></li>
-      </ul>
+      <div class="current">
+        <div>Infected: <b class="infected"></b></div>
+        <div>Recovered: <b class="patients_treated"></b></div>
+        <div>Deaths: <b class="deaths">-</b></div>
+        <div>Uninfected: <b class="uninfected"></b></div>
+      </div>
       <div class="actions">
         <p>
           <button class="btn btn-progress treat_infected">
@@ -104,6 +104,13 @@
           </button>
           Research Level: <b class="research_level"></b>
         </p>
+        <hr />
+        <h3>Hire a doctor (0)</h3>
+        <p>Helps treat patients full-time</p>
+        <button class="btn btn-blue btn-progress research_treatment">
+          <span class="text">Hire a doctor</span>
+          <span class="progress"></span>
+        </button>
       </div>
     </div>
   </body>

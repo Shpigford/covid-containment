@@ -144,3 +144,15 @@ a {
 .more_tools {
   text-align: center;
 }
+
+.current {
+  background: white;
+  padding: 20px 30px;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  div {
+    margin: 0;
+    padding: 0;
+  }
+}
