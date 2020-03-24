@@ -4,7 +4,7 @@ COVID Containment is an incremental game about saving the world from a global pa
 It's open-source and it needs your help.
 
 ## Running the Game
-The codebase is just a simple mix of vanilla JavaScript and jQuery. No special servers or build processes are needed.
+The codebase is just a simple mix of vanilla JavaScript and jQuery. No special servers or build processes are needed. Just open the `index.html` file in whatever browser you'd like and magic will ensue.
 
 ## Contributing
 It's still very early days for this so your mileage will vary here and lots of things will break.
