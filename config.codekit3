@@ -17,6 +17,73 @@
 		"oAP": "/.gitattributes",
 		"oF": 0
 		},
+	"/assets/game-min.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/assets/game-min-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"/assets/jquery-min.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/assets/jquery-min-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"/assets/source/game.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/assets/game-min.js",
+		"oF": 2,
+		"sC": 3,
+		"tS": 0
+		},
+	"/assets/source/jquery.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/assets/jquery-min.js",
+		"oF": 2,
+		"sC": 3,
+		"tS": 0
+		},
+	"/assets/source/style.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "/assets/style.css",
+		"oF": 2,
+		"oS": 0,
+		"uL": 1
+		},
+	"/assets/style.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "/assets/style-min.css",
+		"oF": 0,
+		"oS": 3
+		},
 	"/favicon.ico": {
 		"cB": 0,
 		"ft": 8192,
@@ -24,28 +91,6 @@
 		"oA": 0,
 		"oAP": "/favicon.ico",
 		"oF": 0
-		},
-	"/game-min.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 0,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "/game-min-min.js",
-		"oF": 0,
-		"sC": 3,
-		"tS": 0
-		},
-	"/game.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 0,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "/game-min.js",
-		"oF": 0,
-		"sC": 3,
-		"tS": 0
 		},
 	"/index.html": {
 		"cB": 0,
@@ -55,28 +100,6 @@
 		"oAP": "/index.html",
 		"oF": 0
 		},
-	"/jquery-min.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 0,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "/jquery-min-min.js",
-		"oF": 0,
-		"sC": 3,
-		"tS": 0
-		},
-	"/jquery.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 0,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "/jquery-min.js",
-		"oF": 0,
-		"sC": 3,
-		"tS": 0
-		},
 	"/LICENSE": {
 		"cB": 0,
 		"ft": 8192,
@@ -84,29 +107,6 @@
 		"oA": 0,
 		"oAP": "/LICENSE",
 		"oF": 0
-		},
-	"/style.css": {
-		"aP": 1,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "/style-min.css",
-		"oF": 0,
-		"oS": 3
-		},
-	"/style.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "/style.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
 		}
 	},
 "hooks": [
