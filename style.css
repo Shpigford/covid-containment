@@ -63,7 +63,7 @@ a {
     position: relative;
     z-index: 100; }
 
-#infected {
+.infected {
   background: red;
   border-radius: 5px;
   padding: 5px 8px;
@@ -111,3 +111,10 @@ a {
 
 .research_bonus {
   display: none; }
+
+.more_tools,
+.primary {
+  display: none; }
+
+.more_tools {
+  text-align: center; }

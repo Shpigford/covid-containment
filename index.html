@@ -40,8 +40,8 @@
       <h1></h1>
       <div class="data">
         <p>
-          There are currently <span id="infected">0</span> infected humans. And
-          counting...
+          There are currently <span class="infected">0</span> infected humans.
+          And counting...
         </p>
       </div>
       <div class="actions">
@@ -74,19 +74,37 @@
       </div>
     </div>
 
-    <!-- <h1>COVID Clicker</h1>
-    <p>Infected: <span id="infected">0</span></p>
-    <p>
-      <a href="#" class="btn" onclick="treatInfected()">Treat</a> (<b
-        id="knowledge_bonus"
-        >0</b
-      >
-      knowledge bonus)
-    </p>
+    <div class="more_tools">
+      <h2>Yeeeeah, this isn't working. We're gonna need some more tools.</h2>
+    </div>
 
-    <p>Viral Knowledge: <span id="viral_knowledge">0</span></p>
-    <p>
-      <a href="#" class="btn btn-blue" onclick="research()">Research</a>
-    </p> -->
+    <div class="primary">
+      <h1>COVID Containment Dashboard</h1>
+      <ul class="current">
+        <li>Infected: <b class="infected"></b></li>
+        <li>Recovered: <b class="patients_treated"></b></li>
+        <li>Deaths: <b class="deaths">-</b></li>
+        <li>Uninfected: <b class="uninfected"></b></li>
+      </ul>
+      <div class="actions">
+        <p>
+          <button class="btn btn-progress treat_infected">
+            <span class="text">Treat infected</span>
+            <span class="progress"></span>
+          </button>
+
+          <span class="research_bonus"
+            >Research bonus: <b class="research_bonus_amount"></b
+          ></span>
+        </p>
+        <p>
+          <button class="btn btn-blue btn-progress research_treatment">
+            <span class="text">Research treatment</span>
+            <span class="progress"></span>
+          </button>
+          Research Level: <b class="research_level"></b>
+        </p>
+      </div>
+    </div>
   </body>
 </html>
