@@ -36,7 +36,7 @@ $(document).ready(function() {
     startPrimary();
   }
 
-  $('input[name="name"]').on("keypress", function(e) {
+  $('input[name="nameSearch"]').on("keypress", function(e) {
     var keycode = e.keyCode ? e.keyCode : e.which;
     if (keycode == "13") {
       name = $(this).val();
