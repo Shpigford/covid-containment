@@ -268,7 +268,9 @@ function numberWithCommas(x) {
 }
 
 window.setInterval(function() {
-  increaseInfected();
+  if (Math.random() > 0.82) {
+    increaseInfected();
+  }
   deployDoctors();
   dayCounter();
   save();
