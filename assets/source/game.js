@@ -9,6 +9,10 @@ var researchBonus = 0;
 var deathRate = 2.3;
 var deaths = 0;
 var doctors = 0;
+var day = 1;
+var day_length = 10; // In seconds
+var game_start;
+var previous_infected;
 
 $(document).ready(function() {
   load();
@@ -59,25 +63,33 @@ $(document).ready(function() {
 
     progressButton($(this), 3500, researchTreatment);
   });
+
+  $(".hire_doctor").on("click", function(e) {
+    e.preventDefault();
+
+    progressButton($(this), 10000, hireDoctor);
+  });
 });
 
 function progressButton(button, time, callback) {
-  button.prop("disabled", true);
+  if (button.is(":not(:disabled)")) {
+    button.prop("disabled", true);
 
-  button.find(".progress").animate(
-    {
-      width: "100%"
-    },
-    time,
-    "swing",
-    function() {
-      $(this)
-        .parent()
-        .prop("disabled", false);
-      $(this).width("0%");
-      callback();
-    }
-  );
+    button.find(".progress").animate(
+      {
+        width: "100%"
+      },
+      time,
+      "swing",
+      function() {
+        $(this)
+          .parent()
+          .prop("disabled", false);
+        $(this).width("0%");
+        callback();
+      }
+    );
+  }
 }
 
 function researchTreatment() {
@@ -89,6 +101,11 @@ function researchTreatment() {
 
   $(".research_bonus").fadeIn("slow");
   $(".research_bonus_amount").text(researchBonus);
+}
+
+function hireDoctor() {
+  doctors = doctors + 1;
+  $(".doctors").text(doctors);
 }
 
 function treatInfected() {
@@ -138,7 +155,7 @@ function startMoreTools() {
 
 function increaseInfected() {
   var old_infected = infected;
-  infected = Math.ceil(infected * 1.03);
+  infected = Math.ceil(infected * 1.00003);
   new_infected = infected - old_infected;
 
   uninfected = uninfected - new_infected;
@@ -150,7 +167,34 @@ function increaseInfected() {
   $(".uninfected").text(numberWithCommas(uninfected));
 }
 
+function deployDoctors() {
+  if (doctors > 0) {
+    //$(".treat_infected:not(:disabled)").trigger("click");
+    speed = 1000 - doctors * 100;
+    progressButton($(".treat_infected"), speed, treatInfected);
+  }
+}
+
+function dayCounter() {
+  current = Math.floor(Date.now() / 1000);
+  day = Math.floor((current - game_start) / day_length);
+
+  $(".days_elapsed").text(numberWithCommas(day));
+}
+
 function save() {
+  var savegame = JSON.parse(localStorage.getItem("save"));
+
+  if (savegame !== null) {
+    if (typeof savegame.game_start == "undefined") {
+      game_start = Math.floor(Date.now() / 1000);
+    } else {
+      game_start = savegame.game_start;
+    }
+  } else {
+    game_start = Math.floor(Date.now() / 1000);
+  }
+
   var save = {
     status: status,
     name: name,
@@ -159,7 +203,10 @@ function save() {
     patientsTreated: patientsTreated,
     researchLevel: researchLevel,
     researchBonus: researchBonus,
-    deaths: deaths
+    deaths: deaths,
+    doctors: doctors,
+    day: day,
+    game_start: game_start
   };
   localStorage.setItem("save", JSON.stringify(save));
 }
@@ -180,12 +227,16 @@ function load() {
       researchLevel = savegame.researchLevel;
     if (typeof savegame.researchBonus !== "undefined")
       researchBonus = savegame.researchBonus;
+    if (typeof savegame.doctors !== "undefined") doctors = savegame.doctors;
+    if (typeof savegame.day !== "undefined") day = savegame.day;
   }
 
   $(".infected").text(numberWithCommas(infected));
   $(".uninfected").text(numberWithCommas(uninfected));
   $(".patients_treated").text(numberWithCommas(patientsTreated));
   $(".deaths").text(numberWithCommas(deaths));
+  $(".doctors").text(numberWithCommas(doctors));
+  $(".days_elapsed").text(numberWithCommas(day));
 
   $(".research_level").text(researchLevel);
   if (researchBonus > 1) {
@@ -202,7 +253,11 @@ function reset() {
     uninfected: 7800000000,
     patientsTreated: 0,
     researchLevel: 0,
-    researchLevelProgress: 0
+    researchBonus: 0,
+    deaths: 0,
+    doctors: 0,
+    day: 1,
+    game_start: Math.floor(Date.now() / 1000)
   };
   localStorage.setItem("save", JSON.stringify(save));
   load();
@@ -214,5 +269,7 @@ function numberWithCommas(x) {
 
 window.setInterval(function() {
   increaseInfected();
+  deployDoctors();
+  dayCounter();
   save();
-}, 1000);
+}, 100);
