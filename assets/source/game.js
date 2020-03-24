@@ -8,6 +8,7 @@ var researchLevel = 0;
 var researchBonus = 0;
 var deathRate = 2.3;
 var deaths = 0;
+var doctors = 0;
 
 $(document).ready(function() {
   load();
@@ -167,6 +168,7 @@ function load() {
   var savegame = JSON.parse(localStorage.getItem("save"));
 
   if (savegame !== null) {
+    if (typeof savegame.status !== "undefined") status = savegame.status;
     if (typeof savegame.name !== "undefined") name = savegame.name;
     if (typeof savegame.infected !== "undefined") infected = savegame.infected;
     if (typeof savegame.uninfected !== "undefined")
@@ -179,6 +181,7 @@ function load() {
     if (typeof savegame.researchBonus !== "undefined")
       researchBonus = savegame.researchBonus;
   }
+
   $(".infected").text(numberWithCommas(infected));
   $(".uninfected").text(numberWithCommas(uninfected));
   $(".patients_treated").text(numberWithCommas(patientsTreated));
