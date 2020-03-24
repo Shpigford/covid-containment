@@ -101,7 +101,7 @@ function treatInfected() {
   $(".infected").text(numberWithCommas(infected));
   $(".patients_treated").text(numberWithCommas(patientsTreated));
 
-  if (patientsTreated >= 25 && status == "start_main") {
+  if (patientsTreated >= 20 && status == "start_main") {
     $(".main").fadeOut("slow", function() {
       status = "start_more_tools";
       startMoreTools();
@@ -128,7 +128,7 @@ function startPrimary() {
 function startMoreTools() {
   $(".more_tools").fadeIn("slow", function() {
     $(".more_tools")
-      .delay(5000)
+      .delay(3500)
       .fadeOut("slow", function() {
         startPrimary();
       });
@@ -137,7 +137,7 @@ function startMoreTools() {
 
 function increaseInfected() {
   var old_infected = infected;
-  infected = Math.ceil(infected * 1.025);
+  infected = Math.ceil(infected * 1.03);
   new_infected = infected - old_infected;
 
   uninfected = uninfected - new_infected;
