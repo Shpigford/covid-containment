@@ -155,7 +155,7 @@ function startMoreTools() {
 
 function increaseInfected() {
   var old_infected = infected;
-  infected = Math.ceil(infected * 1.00003);
+  infected = Math.ceil(infected * 1.03);
   new_infected = infected - old_infected;
 
   uninfected = uninfected - new_infected;
