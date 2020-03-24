@@ -1,7 +1,7 @@
 var status = "new";
 var fade_delay = 500;
 var name;
-var infected = 20;
+var infected = 30;
 var uninfected = 7800000000;
 var patientsTreated = 0;
 var researchLevel = 0;
