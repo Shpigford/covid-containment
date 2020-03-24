@@ -166,19 +166,19 @@ function save() {
 function load() {
   var savegame = JSON.parse(localStorage.getItem("save"));
 
-  if (typeof savegame.status !== "undefined") status = savegame.status;
-  if (typeof savegame.name !== "undefined") name = savegame.name;
-  if (typeof savegame.infected !== "undefined") infected = savegame.infected;
-  if (typeof savegame.uninfected !== "undefined")
-    uninfected = savegame.uninfected;
-  if (typeof savegame.deaths !== "undefined") deaths = savegame.deaths;
-  if (typeof savegame.patientsTreated !== "undefined")
-    patientsTreated = savegame.patientsTreated;
-  if (typeof savegame.researchLevel !== "undefined")
-    researchLevel = savegame.researchLevel;
-  if (typeof savegame.researchBonus !== "undefined")
-    researchBonus = savegame.researchBonus;
-
+  if (savegame !== null) {
+    if (typeof savegame.name !== "undefined") name = savegame.name;
+    if (typeof savegame.infected !== "undefined") infected = savegame.infected;
+    if (typeof savegame.uninfected !== "undefined")
+      uninfected = savegame.uninfected;
+    if (typeof savegame.deaths !== "undefined") deaths = savegame.deaths;
+    if (typeof savegame.patientsTreated !== "undefined")
+      patientsTreated = savegame.patientsTreated;
+    if (typeof savegame.researchLevel !== "undefined")
+      researchLevel = savegame.researchLevel;
+    if (typeof savegame.researchBonus !== "undefined")
+      researchBonus = savegame.researchBonus;
+  }
   $(".infected").text(numberWithCommas(infected));
   $(".uninfected").text(numberWithCommas(uninfected));
   $(".patients_treated").text(numberWithCommas(patientsTreated));
