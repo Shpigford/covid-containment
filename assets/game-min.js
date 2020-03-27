@@ -11,7 +11,6 @@ var deaths = 0;
 var doctors = 0;
 var day = 1;
 var day_length = 10; // In seconds
-var game_start;
 var previous_infected;
 
 $(document).ready(function() {
@@ -155,7 +154,7 @@ function startMoreTools() {
 
 function increaseInfected() {
   var old_infected = infected;
-  infected = Math.ceil(infected * 1.02);
+  infected = Math.ceil(infected * 1.03);
   new_infected = infected - old_infected;
 
   uninfected = uninfected - new_infected;
@@ -176,24 +175,13 @@ function deployDoctors() {
 }
 
 function dayCounter() {
-  current = Math.floor(Date.now() / 1000);
-  day = Math.floor((current - game_start) / day_length);
+  day = day + 1;
 
   $(".days_elapsed").text(numberWithCommas(day));
 }
 
 function save() {
   var savegame = JSON.parse(localStorage.getItem("save"));
-
-  if (savegame !== null) {
-    if (typeof savegame.game_start == "undefined") {
-      game_start = Math.floor(Date.now() / 1000);
-    } else {
-      game_start = savegame.game_start;
-    }
-  } else {
-    game_start = Math.floor(Date.now() / 1000);
-  }
 
   var save = {
     status: status,
@@ -205,8 +193,7 @@ function save() {
     researchBonus: researchBonus,
     deaths: deaths,
     doctors: doctors,
-    day: day,
-    game_start: game_start
+    day: day
   };
   localStorage.setItem("save", JSON.stringify(save));
 }
@@ -249,15 +236,14 @@ function reset() {
   var save = {
     status: "new",
     name: null,
-    infected: 20,
+    infected: 30,
     uninfected: 7800000000,
     patientsTreated: 0,
     researchLevel: 0,
     researchBonus: 0,
     deaths: 0,
     doctors: 0,
-    day: 1,
-    game_start: Math.floor(Date.now() / 1000)
+    day: 1
   };
   localStorage.setItem("save", JSON.stringify(save));
   load();
@@ -268,10 +254,19 @@ function numberWithCommas(x) {
 }
 
 window.setInterval(function() {
-  if (Math.random() > 0.82) {
+  // if (Math.random() > 0.82) {
+  //   increaseInfected();
+  // }
+  deployDoctors();
+  save();
+}, 10);
+
+window.setInterval(function() {
+  if (Math.random() > 0.3) {
     increaseInfected();
   }
-  deployDoctors();
+}, 800);
+
+window.setInterval(function() {
   dayCounter();
-  save();
-}, 100);
+}, 1000 * day_length);
